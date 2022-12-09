@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="card my-4">
-        <div class="card-body">
+        <div class="caslotrd-body">
             You're logged in!
         </div>
     </div>

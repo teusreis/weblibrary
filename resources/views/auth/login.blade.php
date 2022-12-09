@@ -1,62 +1,53 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo width="82" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <div class="card-body">
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-3" :status="session('status')" />
+@section('title', 'Login')
 
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-3" :errors="$errors" />
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+@endpush
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
 
-                <!-- Email Address -->
-                <div class="mb-3">
-                    <x-label for="email" :value="__('Email')" />
+@section('content')
+    <div class="card-body">
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-3" :status="session('status')" />
 
-                    <x-input id="email" type="email" name="email" :value="old('email')" required autofocus />
-                </div>
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-3" :errors="$errors" />
 
-                <!-- Password -->
-                <div class="mb-3">
-                    <x-label for="password" :value="__('Password')" />
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-                    <x-input id="password" type="password"
-                             name="password"
-                             required autocomplete="current-password" />
-                </div>
+            <!-- Email Address -->
+            <div class="container">
+                <div class="form-sign-in">
+                    <h1 class="form-title">Login</h1>
 
-                <!-- Remember Me -->
-                <div class="mb-3">
-                    <div class="form-check">
-                        <x-checkbox id="remember_me" name="remember" />
+                    <div class="form-group">
+                        <div class="input">
+                            <label class="form-label" for="email" id="email">E-mail</label>
+                            <input type="email" class="form-control signin-input" id="email-sign-in" name="email"
+                                required />
+                        </div>
+                        <div class="input">
+                            <label class="form-label" for="password" id="password">Senha</label>
+                            <input type="password" class="form-control signin-input" id="password-sign-in" name="password"
+                                required />
+                        </div>
+                        <div class="input">
+                            <button class="btn form-btn" id="btn-sign-in">
+                                Login
+                            </button>
+                        </div>
 
-                        <label class="form-check-label" for="remember_me">
-                            {{ __('Remember Me') }}
-                        </label>
+                        <div class="d-flex justify-content-end text-weight-bold">
+                            {{-- <a href="{{ route('password.request') }}">Recuperar senha</a> --}}
+                            <a href="{{ route('register') }}">Registrar-se</a>
+                        </div>
+
                     </div>
                 </div>
-
-                <div class="mb-0">
-                    <div class="d-flex justify-content-end align-items-baseline">
-                        @if (Route::has('password.request'))
-                            <a class="text-muted me-3" href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
-
-                        <x-button>
-                            {{ __('Log in') }}
-                        </x-button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </x-auth-card>
-</x-guest-layout>
+            </div>
+        </form>
+    </div>
+@endsection
