@@ -1,61 +1,121 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo width="82" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <div class="card-body">
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('title', 'Register')
 
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
+@section('content')
+    <div class="card-body">
+        <!-- Validation Errors -->
+        <x-auth-validation-errors
+            class="mb-4"
+            :errors="$errors"
+        />
 
-                <!-- Name -->
-                <div class="mb-3">
-                    <x-label for="name" :value="__('Name')" />
+        <form
+            method="POST"
+            id="register-form"
+            action="{{ route('register') }}"
+        >
+            @csrf
 
-                    <x-input id="name" type="text" name="name" :value="old('name')" required autofocus />
+            <!-- Name -->
+            <h1 class="form-title">REGISTRAR-SE</h1>
+
+            <div class="form-group">
+                <div class="input">
+                    <label
+                        class="form-label email-sign-up"
+                        for="email"
+                    >
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        class="form-control signin-input"
+                        id="email-sign-up"
+                        name="email"
+                        required
+                    />
                 </div>
-
-                <!-- Email Address -->
-                <div class="mb-3">
-                    <x-label for="email" :value="__('Email')" />
-
-                    <x-input id="email" type="email" name="email" :value="old('email')" required />
+                <div class="input">
+                    <label
+                        class="form-label"
+                        for="name"
+                        id="name"
+                    >
+                        Nome completo
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control signin-input"
+                        id="name-sign-up"
+                        name="name"
+                        required
+                    />
                 </div>
-
-                <!-- Password -->
-                <div class="mb-3">
-                    <x-label for="password" :value="__('Password')" />
-
-                    <x-input id="password" type="password"
-                                    name="password"
-                                    required autocomplete="new-password" />
+                <div class="input">
+                    <label
+                        class="form-label"
+                        for="username"
+                        id="username"
+                    >
+                        Nome de usuário
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control signin-input"
+                        id="username-sign-up"
+                        name="username"
+                    />
                 </div>
-
-                <!-- Confirm Password -->
-                <div class="mb-3">
-                    <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                    <x-input id="password_confirmation" type="password"
-                                    name="password_confirmation" required />
+                <div class="input">
+                    <label
+                        class="form-label password-sign-up"
+                        for="password"
+                    >
+                        Senha
+                    </label>
+                    <input
+                        type="password"
+                        class="form-control signin-input"
+                        id="password-sign-up"
+                        name="password"
+                        required
+                    />
                 </div>
-
-                <div class="mb-0">
-                    <div class="d-flex justify-content-end align-items-baseline">
-                        <a class="text-muted me-3 text-decoration-none" href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a>
-
-                        <x-button>
-                            {{ __('Register') }}
-                        </x-button>
-                    </div>
+                <div class="input">
+                    <label
+                        class="form-label"
+                        for="password_confirmation"
+                        id="password_confirmation"
+                    >
+                        Confirmar senha
+                    </label>
+                    <input
+                        type="password"
+                        class="form-control signin-input"
+                        id="password_confirmation-sign-up"
+                        name="password_confirmation"
+                        required
+                    />
                 </div>
-            </form>
-        </div>
-    </x-auth-card>
-</x-guest-layout>
+                <div class="input">
+                    <button
+                        class="btn form-btn"
+                        {{-- id="btn-sign-up" --}}
+                    >
+                        Enviar
+                    </button>
+                </div>
+                <div class="input">
+                    <a
+                        href="{{ route('login') }}"
+                        class="text-decoration-none text-dark fw-bolder"
+                    >
+                        Já tenho conta
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection
